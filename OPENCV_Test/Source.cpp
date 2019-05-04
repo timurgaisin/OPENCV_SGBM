@@ -95,15 +95,15 @@ void write_ply(std::string fn, Mat verts, Mat colors)
 				k_min++;
 				continue;
 			}
-      mesh_file << point[0] << " " << point[1] << " " << point[2] << " ";
+      			mesh_file << point[0] << " " << point[1] << " " << point[2] << " ";
 			for (int c = 0; c < 3; c++) {
 				if (x1 < 3*colors.cols && x2 < colors.rows) {
 					int point_2 = colors.at<uchar>(x2, x1);
 					if (c < 2) {
-              mesh_file << point_2 << " ";
+              					mesh_file << point_2 << " ";
 					}
 					else {
-              mesh_file << point_2 << " " << endl;
+              					mesh_file << point_2 << " " << endl;
 					}
 				}
 				if ((x1 + 1) < 3*colors.cols) {
@@ -120,7 +120,7 @@ void write_ply(std::string fn, Mat verts, Mat colors)
 			//fprintf(fp, "%f %f %f\n", point[0], point[1], point[2]);
 		}
 	}
-  mesh_file.close();
+  	mesh_file.close();
 
 	std::ofstream model_File(fn);
 	std::string ply_header = "ply \n";
@@ -133,16 +133,16 @@ void write_ply(std::string fn, Mat verts, Mat colors)
 	ply_header += "property uchar green \n";
 	ply_header += "property uchar blue \n";
 	ply_header += "end_header\n";
-  model_File << ply_header;
+  	model_File << ply_header;
 	std::ifstream color_file(mesh_filename);
 	std::string line;
 	while (!color_file.eof()) {
 		getline(color_file, line);
-    model_File << line << endl;
+    		model_File << line << endl;
 	}
-  model_File.close();
+  	model_File.close();
 
-  remove("mesh.txt");
+  	remove("mesh.txt");
 }
 	
 
